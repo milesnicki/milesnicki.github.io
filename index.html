@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Miles&Nicki</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <div>
+                <strong>Can You Join Us</strong>
+            </div>
+            <form id="form" target="_self" onsubmit="" action="">
+                
+                <fieldset>
+                    <label>First Name</label>
+                    <textarea id="first_name" name="first_name"></textarea>
+                </fieldset>
+                <fieldset>
+                    <label>Last Name</label>
+                    <textarea id="last_name" name="last_name"></textarea>
+                </fieldset>
+                <fieldset>
+                    <label>I can make it on May 20th</label>
+                    <input id="qs1_op_1" type="radio" value="Yes" name="qs1">
+                    <input id="qs1_op_2" type="radio" value="No" name="qs1">
+                </fieldset>
+                <div style="width: 100%; display: block; float: right;">
+                    <button id="send" type="submit">
+                        Let's Party
+                    </button>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            function postToGoogle() {
+                var field1 = $("input[type='radio'][name='qs1']:checked").val();
+                var field2 = $('#first_name').val();
+                var field3 = $('#last_name').val();
+                
+              
+                
+ 
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/1FAIpQLSeErOBQjG12t_DD97eZvjUiFzCmQvsquYFMdHhV_zgn-7N1wg/formResponse",
+                    data: {"entry.1" : field1, "entry.2" : field2, "entry.3": field3}
+                    type: "POST",
+                    dataType: "xml",
+                    statusCode: {
+                        0: function() {
+                            //Success message
+                        },
+                        200: function() {
+                            //Success Message
+                        }
+                    }
+                });
+            }
+             
+            $(document).ready(function(){
+                $('#form').submit(function() {
+                    postToGoogle();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>
+ 
